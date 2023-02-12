@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Error Log</title>
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <nav>
+        <a href="errorList.html">Error Logs</a>
+        <a href="#">Add Error</a>
+    </nav>
+
+    <form action="/updateLog" method="POST" style="font-size: large; text-align: center;">
+
+        <label for="subject" id="name"></label>
+        
+        <br><br>
+
+        <input type="text" name="id" id="id" hidden>
+
+        <select name="status" id="status">
+            <option value="open">Open</option>
+            <option value="checkedOut">Checked Out</option>
+            <option value="closed">Closed</option>
+        </select>
+        
+        <br><br>
+
+        <input type="submit" value="Update Log">
+    </form>
+
+    <script>
+        var queryData = window.location.search;
+        var entries = new URLSearchParams(queryData);
+        document.getElementById("id").value = entries.get("id");
+        document.getElementById("name").innerText = entries.get("subject");
+        document.getElementById("status").value = entries.get("status");
+    </script>
+</body>
+</html>

@@ -10,7 +10,7 @@ html,body{
 nav{
     display: flex;
     justify-content: center;
-    background-color: #bfbfbf;    
+    background-color: #afafaf;    
     height: 50px;
 }
 
@@ -20,7 +20,7 @@ a{
     text-align: center;
     font-size: 30px;
     font-weight: 300;
-    text-shadow: 2px 2px 3px #3f3f3f;
+    text-shadow: 2px 2px 4px #0f0f0f;
 }
 
 a:link, a:visited, a:active {
@@ -29,4 +29,31 @@ a:link, a:visited, a:active {
 
 a:hover{
     color: white;
+}
+
+#errorLog{
+    display: flex;
+    width: 100%;
+    background-color: #7f7f7f;
+    border: 2px solid black;
+    margin-bottom: 10px;
+}
+
+#subject{
+    width: 200px;
+    padding-left: 3px;
+}
+
+#description{
+    width: 500px;
+    padding-left: 3px;
+}
+
+#other{
+    width: 95px;
+    padding-left: 3px;
+}
+
+#delbutton:hover{
+    background-color: red;
 }

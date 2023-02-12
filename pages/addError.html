@@ -29,13 +29,14 @@
 </head>
 <body>
     <nav>
-        <a href="#">Add Issue</a>
-        <a href="#">Edit Issue</a>
-        <a href="#">Delete Issue</a>
+        <a href="errorList.html">Error Logs</a>
+        <a href="#">Add Error</a>
     </nav>
 
+    <h2 style="text-align: center;">Add an Error</h2>
+
     <form action="/saveError" method="post" style="font-size: large; text-align: center;" onsubmit="return checkForm()">
-        <label for="subject">Subject:</label><label id="subjectErr" style="color: red;"></label><br>
+        <label for="subject">Title:</label><label id="subjectErr" style="color: red;"></label><br>
         <input type="text" name="subject" id="subject">
         <br><br>
 
@@ -45,17 +46,17 @@
 
         <label for="status">Status:</label><br>
         <select name="status">
-            <option value="open">Open</option>
-            <option value="checkedOut">Checked Out</option>
-            <option value="closed">Closed</option>
+            <option value="Open">Open</option>
+            <option value="Checked Out">Checked Out</option>
+            <option value="Closed">Closed</option>
         </select>
         <br><br>
 
         <label for="priority">Priority</label><br>
         <select name="priority">
-            <option value="high">High</option>
-            <option value="medium">Medium</option>
-            <option value="low">Low</option>
+            <option value="High">High</option>
+            <option value="Medium">Medium</option>
+            <option value="Low">Low</option>
         </select>
         <br><br>
 

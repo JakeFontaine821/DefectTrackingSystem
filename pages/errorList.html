@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Error Logs</title>
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <script>
+        function newFunction(){
+            alert("clicked");
+        }
+    </script>
+</head>
+<body>
+    <nav>
+        <a href="#">Error Logs</a>
+        <a href="addError.html">Add Error</a>
+    </nav>
+    
+    <h2 style="text-align: center;">Error Logs</h2>
+
+    <div id="container" style="width: 1200px; margin: auto; font-size: large;">
+        <form style="display: flex;">
+            <label style="width: 199px; padding-left: 3px; border-left: 1px solid black; 
+                border-right: 1px solid black;">Title</label>
+            <label style="width: 499px; padding-left: 3px; border-right: 1px solid black;">Description</label>
+            <label style="width: 94px; padding-left: 3px; border-right: 1px solid black;">Status</label>
+            <label style="width: 94px; padding-left: 3px; border-right: 1px solid black;">Priority</label>
+            <label style="width: 94px; padding-left: 3px; border-right: 1px solid black;">Date Found</label>
+        </form>
+    </div>
+    
+    <script>
+        fetch("/errorLogs").then(function(logs){
+            logs.json().then(function(theLogs){
+    
+            for(let log of theLogs.log){
+                var errorLog = document.createElement("div");
+                errorLog.id = "errorLog";
+
+                //subject
+                var subjectEl = document.createElement("h2");
+                subjectEl.id = "subject";
+                subjectEl.innerHTML = log.subject;
+                errorLog.appendChild(subjectEl);
+
+                //description
+                var descripEl = document.createElement("p");
+                descripEl.id = "description";
+                descripEl.innerHTML = log.description;
+                errorLog.appendChild(descripEl);
+
+                //status
+                var statusEl = document.createElement("p");
+                statusEl.id = "other";
+                statusEl.innerHTML = log.status;
+                errorLog.appendChild(statusEl);
+
+                //priority
+                var priorityEl = document.createElement("p");
+                priorityEl.id = "other";
+                priorityEl.innerHTML = log.priority;
+                errorLog.appendChild(priorityEl);
+
+                //date
+                var dateEl = document.createElement("p");
+                dateEl.id = "other";
+                dateEl.innerHTML = log.dateDiscovered;
+                errorLog.appendChild(dateEl);
+                
+                //delete button
+                var deleteButton = document.createElement("button");
+                deleteButton.id = "delbutton";
+                deleteButton.style.marginRight = "2px";
+                deleteButton.innerText = "Delete Error Log";
+                deleteButton.addEventListener("click", function(){
+                    location.reload();
+                    fetch("/deleteLog", {
+                        method:"POST",
+                        headers:{
+                            "Content-Type":"application/json"
+                        },
+                        body:JSON.stringify({
+                            log:log._id
+                        })
+                    })
+                })
+                errorLog.appendChild(deleteButton);
+
+                var updateButton = document.createElement("button");
+                updateButton.innerText = "Update Log";
+                updateButton.addEventListener("click", function(){
+                    window.location.replace("/updatePage.html?id=" + log._id + "&subject=" + 
+                        log.subject + "&status=" + log.status);
+                })
+                errorLog.appendChild(updateButton);
+
+                document.getElementById("container").appendChild(errorLog);
+            }
+        })
+    })
+</script>   
+
+</body>
+</html>
