@@ -7,25 +7,36 @@
     <title>Update Error Log</title>
 
     <link rel="stylesheet" href="css/style.css">
+
+    <script>
+        function checkUpdateForm(){
+            if(document.getElementById("status").value == ""){
+                event.preventDefault();
+                document.getElementById("subjectErr").innerHTML = "Please enter a Subject";
+            }
+        }
+    </script>
 </head>
 <body>
     <nav>
         <a href="errorList.html">Error Logs</a>
-        <a href="#">Add Error</a>
+        <a href="addError.html">Add Error</a>
     </nav>
 
     <form action="/updateLog" method="POST" style="font-size: large; text-align: center;">
 
-        <label for="subject" id="name"></label>
+        <label for="subject" id="name" style="font-size: x-large; font-weight: bolder;"></label>
         
-        <br><br>
+        <br>
 
         <input type="text" name="id" id="id" hidden>
 
+        <label id="descripErr" style="color: red;"></label><br>
+        <label for="status">Status:</label>
         <select name="status" id="status">
-            <option value="open">Open</option>
-            <option value="checkedOut">Checked Out</option>
-            <option value="closed">Closed</option>
+            <option value="Open">Open</option>
+            <option value="Checked Out">Checked Out</option>
+            <option value="Closed">Closed</option>
         </select>
         
         <br><br>
